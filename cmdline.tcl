@@ -1,7 +1,7 @@
 # cmdline
 #
-#	This package provides a utility for parsing command line arguments.	It also
-# includes a routine to determine the	application name for use in errors.
+# This package provides a utility for parsing command line arguments. It also
+# includes a routine to determine the application name for use in errors.
 #
 # Copyright (c) 2019      by Jade Michael Thornton
 # Copyright (c) 2001-2015 by Andreas Kupries <andreas_kupries@users.sf.net>.
