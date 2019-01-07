@@ -14,8 +14,7 @@ package require Tcl 8.6
 package provide cmdline 1.5
 
 namespace eval ::cmdline {
-    namespace export getArgv0 getopt getKnownOpt getfiles getoptions \
-	    getKnownOptions usage
+    namespace export getopt getKnownOpt getfiles getoptions getKnownOptions usage
 }
 
 # ::cmdline::getopt --
@@ -333,7 +332,7 @@ proc ::cmdline::GetOptionDefaults {optlist defaultArrayVar} {
 #	A formatted usage message
 
 proc ::cmdline::usage {optlist {usage {options:}}} {
-    set str "[getArgv0] $usage\n"
+    set str "$usage\n"
     foreach opt [concat $optlist \
 	     {{- "Forcibly stop option processing"} {help "Print this message"} {? "Print this message"}}] {
 	set name [lindex $opt 0]
@@ -405,28 +404,6 @@ proc ::cmdline::getfiles {patterns quiet} {
 	}
     }
     return $files
-}
-
-# ::cmdline::getArgv0 --
-#
-#	This command returns the "sanitized" version of argv0.  It will strip
-#	off the leading path and remove extensions.
-#
-# Arguments:
-#	None.
-#
-# Results:
-#	The application name that can be used in error messages.
-
-proc ::cmdline::getArgv0 {} {
-	global argv0
-
-	if {![info exists argv0]} {
-		return ""
-	}
-
-	set name [file tail $argv0]
-	return [file rootname $name]
 }
 
 ##
@@ -830,7 +807,7 @@ proc ::cmdline::typedGetoptions {arglistVar optlist {usage options:}} {
 proc ::cmdline::typedUsage {optlist {usage {options:}}} {
     variable charclasses
 
-    set str "[getArgv0] $usage\n"
+    set str "$usage\n"
     foreach opt [concat $optlist \
             {{help "Print this message"} {? "Print this message"}}] {
         set name [lindex $opt 0]
